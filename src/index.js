@@ -2,7 +2,7 @@ const { app, BrowserWindow } = require('electron');
 const appSetup = require('./app');
 const path = require('node:path');
 const core = require('./core');
-const ejs = require('ejs-electron');
+require('ejs-electron'); // require this for rendering ejs file :D
 
 let mainWindow;
 
@@ -18,7 +18,6 @@ const createWindow = (app) => {
 		},
 	});
 
-	// Require all controllers
 	core(app, mainWindow);
 };
 
