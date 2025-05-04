@@ -3,13 +3,14 @@ const path = require('path');
 
 global.controllers = {};
 global.utils = {};
+global.db = null;
 
 module.exports = async (app, mainWindow) => {
+	console.info('[Core]: Trying to connect to the database ...');
+	global.db = await require('./database').init(app);
+
 	console.info('[Core]: Setting IPC Handler ...');
 	require('./ipcHandler')();
-
-	console.info('[Core]: Trying to connect to the database ...');
-	await require('./database').init(app);
 
 	if (!Object.keys(global.controllers).length) {
 		const controllersPath = path.join(__dirname, '/controllers');

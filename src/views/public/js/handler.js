@@ -138,7 +138,6 @@
 			const notes = document.getElementById('notes').value;
 
 			const newDeadline = {
-				// Không cần ID vì DB sẽ tự động thêm vào
 				Name: taskName,
 				Description: notes,
 				CreatedAt: new Date().toISOString(),
@@ -150,10 +149,9 @@
 				ReminderUnit: reminderUnit,
 			};
 
-			deadlines.push(newDeadline);
-
-			// TODO: Save the new deadline using window.apis
 			await window.apis.main('saveDeadline', newDeadline);
+
+			deadlines = (await window.apis.main('getAll')) || [];
 
 			deadlineForm.reset();
 

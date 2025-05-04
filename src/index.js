@@ -6,7 +6,7 @@ require('ejs-electron'); // require this for rendering ejs file :D
 
 let mainWindow;
 
-const createWindow = (app) => {
+const createWindow = async (app) => {
 	// https://www.electronjs.org/docs/latest/api/structures/base-window-options
 	mainWindow = new BrowserWindow({
 		width: 800,
@@ -18,7 +18,8 @@ const createWindow = (app) => {
 		},
 	});
 
-	core(app, mainWindow);
+	await core(app, mainWindow);
+	// mainWindow.webContents.openDevTools();
 };
 
 appSetup(app, createWindow).catch((error) => {

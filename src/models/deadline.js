@@ -15,7 +15,7 @@ const saveDeadline = (deadline) => {
 		);
 	`
 		)
-		.run(deadline);
+		.run(deadline).lastInsertRowid;
 };
 
 const deleteDeadline = (id) => {
